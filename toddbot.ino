@@ -33,8 +33,8 @@
 
 #define DIRECTION_MSG 0x2
 
-AF_DCMotor motor_front(2, MOTOR12_1KHZ);
-AF_DCMotor motor_rear(3, MOTOR12_1KHZ);
+AF_DCMotor motor_front(2);
+AF_DCMotor motor_rear(3);
 
 
 AndroidAccessory acc(ACCESSORY_STRING_VENDOR,
@@ -49,26 +49,26 @@ void setup() {
   delay(100);
 
   if(DRIVETRAIN == 6) {
-    motor_front.setSpeed(150);
-    motor_rear.setSpeed(150);
+    motor_front.setSpeed(200);
+    motor_rear.setSpeed(200);
     motor_front.run(RELEASE);
     motor_rear.run(RELEASE);
   }
-//  msg[0] = 0x2;
-//  msg[1] = 'F';
+
   acc.powerOn();
 }
 
 
 void loop() {
-  byte msg[2];
-  if (acc.isConnected()) {
-    int len = acc.read(msg, sizeof(msg), 1);
-    Serial.print("Message length: ");
-    Serial.println(len, DEC);
-    if (len > 0) {
-      if (msg[0] = DIRECTION_MSG) {
-        int direction = msg[1];
+//  byte msg[2];
+//  if (acc.isConnected()) {
+//    int len = acc.read(msg, sizeof(msg), 1);
+//    Serial.print("Message length: ");
+//    Serial.println(len, DEC);
+//    if (len > 0) {
+//      if (msg[0] = DIRECTION_MSG) {
+//        int direction = msg[1];
+        byte direction = 'F';
         if (direction == 'F') {
           goForward();
         } else if (direction == 'R') {
@@ -80,22 +80,23 @@ void loop() {
         } else {
           stop();
         }
-      }
-    } else {
-      stop();
-    }
-    msg[0] = -1;
-  }
-  else {
-    stop();
-  }
-  delay(100);
+//      }
+//    } else {
+//      stop();
+//    }
+//    msg[0] = -1;
+//  }
+//  else {
+//    stop();
+//  }
+  delay(1000);
 }
 
 void goForward() {
   if(DRIVETRAIN == 6) {
     motor_front.run(RELEASE);
     motor_rear.run(FORWARD);
+    motor_rear.setSpeed(100);
   }
 }
 
@@ -103,20 +104,25 @@ void goBackward() {
   if(DRIVETRAIN == 6) {
     motor_front.run(RELEASE);
     motor_rear.run(BACKWARD);
+    motor_rear.setSpeed(100);
   }  
 }
 
 void turnRight() {
   if(DRIVETRAIN == 6) {
-    motor_front.run(FORWARD);
+    motor_front.run(BACKWARD;
     motor_rear.run(FORWARD);
+    motor_front.setSpeed(255);
+    motor_rear.setSpeed(100);
   }  
 }
 
 void turnLeft() {
   if(DRIVETRAIN == 6) {
-    motor_front.run(BACKWARD);
+    motor_front.run(FORWARD);
     motor_rear.run(FORWARD);
+    motor_front.setSpeed(255);
+    motor_rear.setSpeed(100);
   }  
 }
 
