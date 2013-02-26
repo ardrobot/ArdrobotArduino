@@ -11,9 +11,10 @@ Dependencies
 Setup
 -----
 Clone the ArdrobotArdiuno application to the Arduino working directory (e.g. /Users/username/Documents/Arudino/)
+
 NOTE: Requires an Arduino MEGA ADK, Arduino USB Shield or Arduino Due for Android Open Accessory library compatibility.
 
 
-Ardrobot
---------
+About Ardrobot
+--------------
 An opionated, end-to-end open source robot platform built around a core of Android, Arduino, and ROS open source projects.
