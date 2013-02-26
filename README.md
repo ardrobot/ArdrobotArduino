@@ -1,5 +1,5 @@
-ArdrobotArduino - Arduino component of the Ardrobot
-===================================================
+ArdrobotArduino - Arduino component of Ardrobot
+===============================================
 
 Dependencies
 ------------
