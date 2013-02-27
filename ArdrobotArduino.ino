@@ -37,7 +37,7 @@ void setup() {
   
   if(DRIVETRAIN == 6) {
     motor_front.setSpeed(200);
-    motor_rear.setSpeed(200);
+    motor_rear.setSpeed(255);
     motor_front.run(RELEASE);
     motor_rear.run(RELEASE);
   }
