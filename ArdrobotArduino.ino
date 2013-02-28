@@ -27,8 +27,10 @@ P2PMQTT mqtt(true); // Set to true for debugging
 // 11 = Four-Wheel Omnidirectional Drive
 // 12 = Synchronized Omnidirectional Drive
 #define DRIVETRAIN 6
+#define TURNSPEED 225
+#define DRIVESPEED 255
 
-AF_DCMotor motor_front(2);
+AF_DCMotor motor_front(2, MOTOR12_64KHZ);
 AF_DCMotor motor_rear(3);
 
 void setup() {
@@ -36,8 +38,8 @@ void setup() {
   Serial.println("Ready");
   
   if(DRIVETRAIN == 6) {
-    motor_front.setSpeed(200);
-    motor_rear.setSpeed(255);
+    motor_front.setSpeed(TURNSPEED);
+    motor_rear.setSpeed(DRIVESPEED);
     motor_front.run(RELEASE);
     motor_rear.run(RELEASE);
   }
@@ -108,7 +110,6 @@ void goForward() {
   if(DRIVETRAIN == 6) {
     motor_front.run(RELEASE);
     motor_rear.run(FORWARD);
-    motor_rear.setSpeed(100);
   }
 }
 
@@ -116,25 +117,20 @@ void goBackward() {
   if(DRIVETRAIN == 6) {
     motor_front.run(RELEASE);
     motor_rear.run(BACKWARD);
-    motor_rear.setSpeed(100);
   }  
 }
 
 void turnRight() {
   if(DRIVETRAIN == 6) {
     motor_front.run(BACKWARD);
-    motor_rear.run(FORWARD);
-    motor_front.setSpeed(255);
-    motor_rear.setSpeed(100);
+//    motor_rear.run(FORWARD);
   }  
 }
 
 void turnLeft() {
   if(DRIVETRAIN == 6) {
     motor_front.run(FORWARD);
-    motor_rear.run(FORWARD);
-    motor_front.setSpeed(255);
-    motor_rear.setSpeed(100);
+//    motor_rear.run(FORWARD);
   }  
 }
 
